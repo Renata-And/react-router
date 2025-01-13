@@ -1,20 +1,22 @@
-import React from "react";
-import { createBrowserRouter} from "react-router-dom";
-import App from '../App'
-import {Error404} from '../components/pages/Error404';
-import {Adidas} from '../components/pages/Adidas';
-import {Puma} from '../components/pages/Puma';
-import {Abibas} from '../components/pages/Abibas';
-import {Prices} from '../components/pages/Prices';
-import {Model} from '../components/pages/Model';
+import { createBrowserRouter } from "react-router-dom";
+import App from '../App';
+import { Abibas } from '../components/pages/Abibas';
+import { Adidas } from '../components/pages/Adidas';
+import { Error404 } from '../components/pages/Error404';
+import { Model } from '../components/pages/Model';
+import { Prices } from '../components/pages/Prices';
+import { Puma } from '../components/pages/Puma';
+import { ProtectedRoute } from "./ProtectedRoute";
+import { ProtectedPage } from "../components/pages/ProtectedPage";
 
-const PATH = {
+export const PATH = {
   ADIDAS: '/adidas',
   PUMA: '/puma',
   ABIBAS: '/abibas',
   PRICES: '/prices',
-  ERROR: 'page/error',
+  ERROR: 'error',
   MODEL: '/:maker/:id',
+  PROTECTED: '/protected'
 } as const;
 
 export const router = createBrowserRouter([
@@ -41,7 +43,19 @@ export const router = createBrowserRouter([
       },
       {
         path: PATH.MODEL,
-        element: <Model/>
+        element: <Model />
+      },
+      {
+        path: PATH.PROTECTED,
+        element: (
+          <ProtectedRoute>
+            <ProtectedPage />
+          </ProtectedRoute>
+        )
+      },
+      {
+        path: PATH.ERROR,
+        element: <Error404 />
       }
     ],
   },
