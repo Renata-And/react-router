@@ -3,12 +3,11 @@ import App from '../App';
 import { Abibas } from '../components/pages/Abibas';
 import { Adidas } from '../components/pages/Adidas';
 import { Error404 } from '../components/pages/Error404';
+import { Login } from "../components/pages/Login";
 import { Model } from '../components/pages/Model';
 import { Prices } from '../components/pages/Prices';
-import { Puma } from '../components/pages/Puma';
-import { ProtectedRoute } from "./ProtectedRoute";
 import { ProtectedPage } from "../components/pages/ProtectedPage";
-import { Login } from "../components/pages/Login";
+import { Puma } from '../components/pages/Puma';
 
 export const PATH = {
   ADIDAS: '/adidas',
@@ -70,6 +69,10 @@ export const router = createBrowserRouter([
     element: <App />,
     errorElement: <Navigate to={PATH.ERROR} />,
     children: [
+      {
+        path: '/',
+        element: <Navigate to={PATH.ADIDAS} />
+      },
       {
         element: <PriveteRoutes />,
         children: privateRoutes
