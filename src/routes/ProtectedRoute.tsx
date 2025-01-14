@@ -11,7 +11,7 @@ export const ProtectedRoute = ({ children }: Props) => {
     <>
       {logged
         ? children
-        : <Navigate to={'/error'} />
+        : <Navigate to={'/login'} />
       }
     </>
   )
